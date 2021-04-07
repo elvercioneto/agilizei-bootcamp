@@ -1,0 +1,184 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-04-07T09:32:05.274Z",
+    "end": "2021-04-07T09:34:39.808Z",
+    "duration": 130523,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "11e5cd78-b463-4055-ad2f-410430d071a4",
+      "title": "",
+      "fullFile": "cypress\\integration\\listagem.spec.js",
+      "file": "cypress\\integration\\listagem.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "cd9b8b47-591a-43d2-b5a2-a9eb491c1999",
+          "title": "Listagem",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Listagem sem registros",
+              "fullTitle": "Listagem Listagem sem registros",
+              "timedOut": null,
+              "duration": 38453,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('GET', '**/api/1/databases/userdetails/collections/newtable?**', {\n  statusCode: 200,\n  fixture: 'webtable-get-vazio'\n}).as('getNewtable');\ncy.visit('WebTable.html');\ncy.get('div[role=row]').should('have.length', 1);",
+              "err": {},
+              "uuid": "d3ead026-57a6-4bf0-a2a2-8f467ae587ab",
+              "parentUUID": "cd9b8b47-591a-43d2-b5a2-a9eb491c1999",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Listagem com apenas um registro",
+              "fullTitle": "Listagem Listagem com apenas um registro",
+              "timedOut": null,
+              "duration": 11698,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('GET', '**/api/1/databases/userdetails/collections/newtable?**', {\n  statusCode: 200,\n  fixture: 'webtable-get-unico'\n}).as('getNewtable');\ncy.visit('WebTable.html');\ncy.get('div[role=row] div[role=gridcell]').eq(4).find('div').as('gridCellPhone');\ncy.get('@gridCellPhone').should('contain.text', '5278731243');",
+              "err": {},
+              "uuid": "1f75fbbd-d989-4c0c-a1c0-d03ed6b2dd9c",
+              "parentUUID": "cd9b8b47-591a-43d2-b5a2-a9eb491c1999",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d3ead026-57a6-4bf0-a2a2-8f467ae587ab",
+            "1f75fbbd-d989-4c0c-a1c0-d03ed6b2dd9c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 50151,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "116bbbe6-ee6d-4728-b38c-56a2b798f6ec",
+      "title": "",
+      "fullFile": "cypress\\integration\\cadastro.spec.js",
+      "file": "cypress\\integration\\cadastro.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "3de141a1-2572-48c1-8be3-d39ab0b00698",
+          "title": "Cadastro",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Cadastro de usuário no site",
+              "fullTitle": "Cadastro Cadastro de usuário no site",
+              "timedOut": null,
+              "duration": 80372,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// solução proposta por Jaque Nunes, Turma 5 do Agilizei Bootcamp\ncy.intercept('POST', '**/api/1/databases/userdetails/collections/newtable?**', {\n  statusCode: 200,\n  body: {}\n}).as('postNewtable');\ncy.intercept('POST', '**/api/1/databases/userdetails/collections/usertable?**', {\n  statusCode: 200,\n  body: {}\n}).as('postUsertable');\ncy.intercept('GET', '**/api/1/databases/userdetails/collections/newtable?**', {\n  statusCode: 200,\n  body: {}\n}).as('getNewtable');\ncy.visit('Register.html'); //type\ncy.get('input[placeholder=\"First Name\"]').type(chance.first());\ncy.get('input[ng-model^=Last]').type(chance.last());\ncy.get('input[ng-model^=Email]').type(chance.email());\ncy.get('input[ng-model^=Phone]').type(chance.phone({\n  formatted: false\n})); //check => interagir com radios e checkboxes\ncy.get('input[value=FeMale]').check();\ncy.get('input[type=checkbox]').check('Cricket');\ncy.get('input[type=checkbox]').check('Hockey'); //select -> select & select2 (combos)\ncy.get('select#Skills').select('Javascript');\ncy.get('select#countries').select('Argentina');\ncy.get('select#country').select('Australia', {\n  force: true\n}); //o force true serve pra forçar interação com elemento oculto\ncy.get('select#yearbox').select('1996');\ncy.get('select[ng-model^=month]').select('February');\ncy.get('select#daybox').select('24');\ncy.get('input#firstpassword').type('Agilizei@2020');\ncy.get('input#secondpassword').type('Agilizei@2020'); //attachFile => input file...upload de arquivos\ncy.get('input#imagesrc').attachFile('imagem-foto.png');\ncy.get('button#submitbtn').click();\ncy.wait('@postNewtable').then(function (resNewtable) {\n  // com o intercept\n  expect(resNewtable.response.statusCode).to.eq(200);\n});\ncy.wait('@postUsertable').then(function (resUsertable) {\n  // com o intercept\n  expect(resUsertable.response.statusCode).to.eq(200);\n});\ncy.wait('@getNewtable').then(function (resNewtable) {\n  // com o intercept\n  expect(resNewtable.response.statusCode).to.eq(200);\n});\ncy.url().should('contain', 'WebTable');",
+              "err": {},
+              "uuid": "5680b4c5-8b16-41cb-983b-0489ed3d62d4",
+              "parentUUID": "3de141a1-2572-48c1-8be3-d39ab0b00698",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5680b4c5-8b16-41cb-983b-0489ed3d62d4"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 80372,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "mochawesome-report",
+        "quiet": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}

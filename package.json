@@ -19,7 +19,7 @@
   "devDependencies": {
     "chance": "^1.1.7",
     "cucumber-html-reporter": "^5.4.0",
-    "cypress": "^6.8.0",
+    "cypress": "^7.0.0",
     "cypress-cucumber-preprocessor": "^4.0.3",
     "cypress-file-upload": "^5.0.3",
     "cypress-multi-reporters": "^1.4.0",
@@ -38,6 +38,8 @@
     }
   },
   "dependencies": {
+    "install": "^0.13.0",
+    "npm": "^7.8.0",
     "rimraf": "^3.0.2"
   }
 }
